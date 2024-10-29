@@ -7,8 +7,9 @@ import {
   DialogPanel,
   DialogTitle,
 } from "@headlessui/react";
+import Empty from "./Empty";
 
-const Sent = () => {
+const Sent = ({ setActiveComponent }) => {
   const [sentMessages, setSentMessages] = useState([]);
   const [open, setOpen] = useState(false);
   const [selectedMessage, setSelectedMessage] = useState(null);
@@ -28,6 +29,10 @@ const Sent = () => {
     setSelectedMessage(message);
     setOpen(true);
   };
+
+  if (sentMessages.length === 0) {
+    return <Empty setActiveComponent={setActiveComponent} />; 
+  }
 
   return (
     <>

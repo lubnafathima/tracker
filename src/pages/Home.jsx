@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Inbox from "../components/Inbox";
+import Empty from "../components/Empty";
 import Compose from "../components/Compose";
 import Sent from "../components/Sent";
 import Navbar from "../components/Navbar";
@@ -10,13 +11,13 @@ const Main = () => {
   const renderComponent = () => {
     switch (activeComponent) {
       case "inbox":
-        return <Inbox />;
+        return <Inbox setActiveComponent={setActiveComponent} />;
       case "compose":
         return <Compose />;
       case "sent":
-        return <Sent />;
+        return <Sent setActiveComponent={setActiveComponent} />;
       default:
-        return <Inbox />;
+        return <Inbox setActiveComponent={setActiveComponent} />;
     }
   };
 

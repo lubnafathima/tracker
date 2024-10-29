@@ -20,7 +20,7 @@ const Compose = () => {
   };
 
   return (
-    <div className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+    <div className="isolate bg-white px-6 py-12 lg:py-20 lg:px-8">
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="text-balance text-4xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
           New Message

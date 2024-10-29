@@ -7,8 +7,9 @@ import {
   DialogPanel,
   DialogTitle,
 } from "@headlessui/react";
+import Empty from "./Empty";
 
-const Inbox = () => {
+const Inbox = ({ setActiveComponent }) => {
   const [messages, setMessages] = useState([]);
   const [open, setOpen] = useState(false);
   const [selectedMessage, setSelectedMessage] = useState(null);
@@ -29,6 +30,10 @@ const Inbox = () => {
     setSelectedMessage(message);
     setOpen(true); 
   };
+
+  if (messages.length === 0) {
+    return <Empty setActiveComponent={setActiveComponent} />;
+  }
 
   return (
     <>
@@ -72,7 +77,7 @@ const Inbox = () => {
             <DialogPanel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
               <div className="bg-gray-50 px-4 py-3 sm:flex sm:justify-between sm:items-center sm:px-6">
                 <DialogTitle className="text-base font-semibold leading-6 text-gray-900">
-                  {selectedMessage?.from} {/* Show "from" */}
+                  {selectedMessage?.from} 
                 </DialogTitle>
                 <button
                   type="button"
