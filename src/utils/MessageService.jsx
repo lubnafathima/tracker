@@ -1,6 +1,14 @@
 import { db } from "../firebase/firebaseConfig";
-import { collection, query, where, addDoc, getDocs, serverTimestamp, doc, updateDoc } from "firebase/firestore";
-
+import {
+  collection,
+  query,
+  where,
+  addDoc,
+  getDocs,
+  serverTimestamp,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 
 export const sendMessage = async (from, to, messageContent) => {
   try {
@@ -18,31 +26,29 @@ export const sendMessage = async (from, to, messageContent) => {
   }
 };
 
-
 export const fetchMessages = async (userId) => {
   const messagesRef = collection(db, "Messages");
   const q = query(messagesRef, where("to", "==", userId));
   const querySnapshot = await getDocs(q);
-  
+
   const messages = [];
   querySnapshot.forEach((doc) => {
     messages.push({ id: doc.id, ...doc.data() });
   });
-  
+
   return messages;
 };
-
 
 export const fetchSentMessages = async (userId) => {
   const messagesRef = collection(db, "Messages");
   const q = query(messagesRef, where("from", "==", userId));
   const querySnapshot = await getDocs(q);
-  
+
   const sentMessages = [];
   querySnapshot.forEach((doc) => {
     sentMessages.push({ id: doc.id, ...doc.data() });
   });
-  
+
   return sentMessages;
 };
 
